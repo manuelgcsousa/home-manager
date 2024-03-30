@@ -8,16 +8,20 @@ let
   defaultPkgs = with pkgs; [
     bat
     fzf
+    gopls
     jq
+    lua-language-server
+    neofetch
     ripgrep
+    terraform
     tmux
     tree
-
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
   ];
 
   extraPkgs = with pkgs; [
-    neofetch
+    (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    nodePackages.pyright
+    python311Packages.pylama
   ];
 in
 {

@@ -58,9 +58,6 @@ else
     export LSCOLORS=ExBxfxdxCxegedabagaced
 fi
 
-# enable homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 
 #
 # aliases
