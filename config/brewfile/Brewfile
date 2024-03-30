@@ -1,0 +1,24 @@
+# taps
+tap "hashicorp/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+
+# brews
+brew "docker"
+brew "go"
+brew "gopls"
+brew "hashicorp/tap/terraform"
+brew "lua-language-server"
+brew "pyright"
+
+# casks
+cask "alacritty"
+cask "brave-browser"
+cask "bruno"
+cask "dbeaver-community"
+cask "firefox"
+cask "spaceman"
+cask "spotify"
+cask "tunnelblick"
+cask "hiddenbar"

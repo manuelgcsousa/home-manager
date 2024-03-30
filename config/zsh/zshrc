@@ -1,0 +1,107 @@
+#
+# env
+#
+
+# 256 colors term
+export TERM="xterm-256color"
+
+# defaults
+export TERMINAL="alacritty"
+export EDITOR="nvim"
+export LANG=pt_PT.UTF-8
+
+# PATH
+export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:/usr/local/go/bin:$HOME/.cargo/bin:$HOME/.local/share/go/bin:/opt/gradle/gradle-8.5/bin:$HOME/.bun/bin"
+
+# go
+export GOPATH="$HOME/.local/share/go"
+
+
+#
+# zsh settings
+#
+
+# prompt
+function parse_git_branch() {
+    branch=$(git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
+    [ $branch ] && echo " :: %F{green}$branch%f"
+}
+setopt PROMPT_SUBST
+PROMPT=$'\n[%F{8}%~%f$(parse_git_branch)]\n$ '
+export PROMPTBK=$PROMPT
+
+# history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$HOME/.cache/zsh/history"
+bindkey -v
+bindkey "^R" history-incremental-search-backward
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+bindkey "^?" backward-delete-char
+
+# autocomplete
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# shell utils
+setopt ignoreeof
+
+# ls colors
+if [[ $(uname -s) == "Linux" ]]; then
+    export LS_COLORS="di=1;36:ln=1;31:so=35:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43"
+else
+    export CLICOLOR=1
+    export LSCOLORS=ExBxfxdxCxegedabagaced
+fi
+
+# enable homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+#
+# aliases
+#
+
+# sane defaults
+alias \
+    ..="cd ../" \
+    ls="ls -v --color" \
+    cp="cp -iv" \
+    rm="rm -i" \
+    mv="mv -i" \
+    mkdir="mkdir -p" \
+    grep="grep --color=auto"
+
+# other
+alias tf="terraform"
+alias cat="bat --theme 'Visual Studio Dark+'"
+
+
+#
+# functions
+#
+
+function mktar() {
+  tar -cvzf "$1.tar.gz" "$1";
+}
+
+function untar() {
+  tar -xvzf "$1";
+}
+
+function mkzip() {
+  zip -r "$1.zip" "$1";
+}
+
+function fcheckout() {
+  if [ -n "$(git status 2> /dev/null)" ]; then
+    branch=$(git branch | grep -v "^\*" | tr -d ' ' | fzf --reverse --border=bold --height=50% --color=hl:9,hl+:1)
+    [ -n "$branch" ] && git checkout $branch
+  else
+    echo 'Current directory is not a git repository.'
+  fi
+}
