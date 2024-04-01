@@ -4,13 +4,14 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 # brews
-brew "docker"
+# ...
 
 # casks
 cask "alacritty"
 cask "brave-browser"
 cask "bruno"
 cask "dbeaver-community"
+cask "docker"
 cask "firefox"
 cask "spaceman"
 cask "spotify"
