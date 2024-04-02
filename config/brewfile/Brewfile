@@ -1,7 +1,5 @@
 # taps
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 
 # brews
 # ...
@@ -11,7 +9,6 @@ cask "alacritty"
 cask "brave-browser"
 cask "bruno"
 cask "dbeaver-community"
-cask "docker"
 cask "firefox"
 cask "spaceman"
 cask "spotify"
