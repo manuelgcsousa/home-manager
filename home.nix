@@ -19,7 +19,7 @@ let
   ];
 
   extraPkgs = with pkgs; [
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    # font ~> https://github.com/shytikov/pragmasevka
     nodePackages.pyright
     python311Packages.pylama
   ];
