@@ -1,16 +1,23 @@
 # taps
 tap "homebrew/bundle"
+tap "koekeishiya/formulae"
 
 # brews
-# ...
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
 
 # casks
-cask "alacritty"
+cask "alt-tab"
 cask "brave-browser"
 cask "bruno"
 cask "dbeaver-community"
+cask "docker"
 cask "firefox"
+cask "hiddenbar"
+cask "scroll-reverser"
+cask "slack"
+cask "kitty"
 cask "spaceman"
 cask "spotify"
 cask "tunnelblick"
-cask "hiddenbar"
+cask "zoom"

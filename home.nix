@@ -40,8 +40,11 @@ in
     file = {
       ".config/alacritty" = { source = ./config/alacritty; recursive = true; };
       ".config/brewfile"  = { source = ./config/brewfile; recursive = true; };
+      ".config/kitty"     = { source = ./config/kitty; recursive = true; };
       ".config/nvim"      = { source = ./config/nvim; recursive = true; };
+      ".config/skhd"      = { source = ./config/skhd; recursive = true; };
       ".config/tmux"      = { source = ./config/tmux; recursive = true; };
+      ".config/yabai"      = { source = ./config/yabai; recursive = true; };
       ".zshrc".source     = ./config/zsh/zshrc;
     };
   };
@@ -78,6 +81,7 @@ in
         p.tree-sitter-bash
         p.tree-sitter-c
         p.tree-sitter-dockerfile
+        p.tree-sitter-go
         p.tree-sitter-html
         p.tree-sitter-java
         p.tree-sitter-json
@@ -85,11 +89,11 @@ in
         p.tree-sitter-make
         p.tree-sitter-nix
         p.tree-sitter-python
+        p.tree-sitter-terraform
+        p.tree-sitter-typescript
         p.tree-sitter-vim
         p.tree-sitter-vimdoc
         p.tree-sitter-yaml
-        p.tree-sitter-terraform
-        p.tree-sitter-typescript
       ]))
     ];
   };
