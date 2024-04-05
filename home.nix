@@ -44,7 +44,7 @@ in
       ".config/nvim"      = { source = ./config/nvim; recursive = true; };
       ".config/skhd"      = { source = ./config/skhd; recursive = true; };
       ".config/tmux"      = { source = ./config/tmux; recursive = true; };
-      ".config/yabai"      = { source = ./config/yabai; recursive = true; };
+      ".config/yabai"     = { source = ./config/yabai; recursive = true; };
       ".zshrc".source     = ./config/zsh/zshrc;
     };
   };
