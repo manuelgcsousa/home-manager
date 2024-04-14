@@ -8,7 +8,7 @@ cmd + shift - q : yabai -m window --close
 cmd - 1 : open -a "kitty"
 cmd - 2 : open -a "Brave Browser"
 cmd - 3 : open -a "DBeaver"
-cmd - 4 : open -a "RedisInsight"
+cmd - 4 : open -a "Redis Insight"
 cmd - m : open -a "Firefox"
 
 # move window to space
