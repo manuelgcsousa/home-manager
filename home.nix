@@ -13,9 +13,12 @@ let
     lua-language-server
     neofetch
     ripgrep
-    terraform
+    # terraform
+    terraform-ls
     tmux
     tree
+    typst
+    wget
   ];
 
   extraPkgs = with pkgs; [

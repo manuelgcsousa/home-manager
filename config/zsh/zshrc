@@ -11,10 +11,13 @@ export EDITOR="nvim"
 export LANG=pt_PT.UTF-8
 
 # PATH
-export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts:/usr/local/go/bin:$HOME/.cargo/bin:$HOME/.local/share/go/bin:/opt/gradle/gradle-8.5/bin:$HOME/.bun/bin"
+export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$HOME/.scripts:/usr/local/go/bin:$HOME/.cargo/bin:$HOME/.local/share/go/bin:/opt/gradle/gradle-8.5/bin:$HOME/.bun/bin"
 
 # go
 export GOPATH="$HOME/.local/share/go"
+
+# docker on arm?
+[[ $(uname -m) == "arm64" ]] && export DOCKER_DEFAULT_PLATFORM=linux/arm64
 
 
 #
@@ -55,7 +58,7 @@ if [[ $(uname -s) == "Linux" ]]; then
     export LS_COLORS="di=1;36:ln=1;31:so=35:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43"
 else
     export CLICOLOR=1
-    export LSCOLORS=ExBxfxdxCxegedabagaced
+    export LSCOLORS=GxBxfxdxCxegedabagaced
 fi
 
 
@@ -74,9 +77,11 @@ alias \
     grep="grep --color=auto"
 
 # other
+alias ppath="echo $PATH | tr -s ':' '\n'"
 alias tf="terraform"
-alias cat="bat --theme 'Visual Studio Dark+'"
-
+alias bat="bat --theme 'Visual Studio Dark+'"
+alias icat="kitten icat"
+alias backend="cd ~/TonicApp/Backend/doctors/api"
 
 #
 # functions
