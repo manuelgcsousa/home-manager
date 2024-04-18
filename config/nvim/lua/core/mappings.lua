@@ -14,15 +14,17 @@ map('v', '<',          '<gv',                                      { silent = tr
 map('v', '>',          '>gv',                                      { silent = true })  -- shift right
 map('n', '<Leader>fp', '<cmd>lua print(vim.fn.expand("%:p"))<CR>', opts)               -- print file absolute path
 map('n', '<Leader>jq', ':%!jq<CR>',                                opts)               -- format JSON file with 'jq'
+map('v', '<Leader>jq', '!jq .<CR>',                                opts)               -- format JSON visual selection with 'jq'
 map('x', 'Q',          ':norm @q<CR>',                             { silent = false }) -- run 'q' macro on multiple lines
 
 --- nvim-tree
 map('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
 
 -- telescope
-map('n', '<C-f>', ':Telescope find_files<CR>', opts)
-map('n', '<C-b>', ':Telescope buffers<CR>',    opts)
-map('n', '<C-g>', ':Telescope live_grep<CR>',  opts)
+map('n', '<C-f>',      ':Telescope find_files<CR>',  opts)
+map('n', '<C-b>',      ':Telescope buffers<CR>',     opts)
+map('n', '<C-g>',      ':Telescope live_grep<CR>',   opts)
+map('n', '<Leader>gs', ':Telescope git_status<CR>',  opts)
 
 -- gitsigns
 map('n', '<Leader>lb', ':Gitsigns toggle_current_line_blame<CR>', opts)
