@@ -85,6 +85,7 @@ alias bat="bat --theme 'Visual Studio Dark+'"
 alias icat="kitten icat"
 alias backend="cd ~/TonicApp/Backend/doctors/api"
 
+
 #
 # functions
 #
