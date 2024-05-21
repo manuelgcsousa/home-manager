@@ -9,6 +9,7 @@ cmd - 1 : open -a "kitty"
 cmd - 2 : open -a "Brave Browser"
 cmd - 3 : open -a "DBeaver"
 cmd - 4 : open -a "Redis Insight"
+cmd - 5 : open -a "Bruno"
 cmd - m : open -a "Firefox"
 
 # move window to space
