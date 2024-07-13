@@ -2,8 +2,7 @@
 
 let
   myUser = "manuelgcsousa";
-
-  isLinux = builtins.currentSystem == "x86_64-linux";
+  myHome = if pkgs.stdenv.isLinux then "/home/${myUser}" else "/Users/${myUser}";
 
   defaultPkgs = with pkgs; [
     bat
@@ -11,9 +10,9 @@ let
     gopls
     jq
     lua-language-server
-    neofetch
+    macchina
     ripgrep
-    # terraform
+    tabiew
     terraform-ls
     tmux
     tree
@@ -23,8 +22,8 @@ let
 
   extraPkgs = with pkgs; [
     # font ~> https://github.com/shytikov/pragmasevka
-    nodePackages.pyright
-    python311Packages.pylama
+    ruff
+    pyright
   ];
 in
 {
@@ -33,10 +32,10 @@ in
   };
 
   home = {
-    username = myUser;
-    homeDirectory = if isLinux then "/home/${myUser}" else "/Users/${myUser}";
+    stateVersion = "24.11";
 
-    stateVersion = "23.11";
+    username = myUser;
+    homeDirectory = myHome;
 
     packages = defaultPkgs ++ extraPkgs;
 
@@ -52,7 +51,7 @@ in
     };
   };
 
-  # setup neovim
+  # use home-manager as a neovim package manager
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -68,11 +67,11 @@ in
       lualine-nvim
       nvim-autopairs
       vim-surround
-      git-conflict-nvim
+      conflict-marker-vim
       nvim-web-devicons
 
+      conform-nvim
       nvim-lspconfig
-      null-ls-nvim
       neodev-nvim
       nvim-cmp
       cmp-nvim-lsp
