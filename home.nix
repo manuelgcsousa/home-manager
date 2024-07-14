@@ -5,25 +5,27 @@ let
   myHome = if pkgs.stdenv.isLinux then "/home/${myUser}" else "/Users/${myUser}";
 
   defaultPkgs = with pkgs; [
-    bat
+    # base
     fzf
-    gopls
     jq
-    lua-language-server
     macchina
     ripgrep
     tabiew
-    terraform-ls
     tmux
     tree
     typst
     wget
+
+    # language servers
+    gopls
+    lua-language-server
+    pyright
+    terraform-ls
   ];
 
   extraPkgs = with pkgs; [
     # font ~> https://github.com/shytikov/pragmasevka
     ruff
-    pyright
   ];
 in
 {
@@ -49,13 +51,21 @@ in
     };
   };
 
-  # use home-manager as a neovim package manager
+  programs.bat = {
+    enable = true;
+
+    config = {
+      theme = "Visual Studio Dark+";
+    };
+  };
+
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
 
+    # use home-manager as a neovim package manager
     plugins = with pkgs.vimPlugins; [
       alpha-nvim
       gitsigns-nvim
