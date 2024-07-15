@@ -16,16 +16,16 @@ let
     typst
     wget
 
-    # language servers
+    # language tools
     gopls
     lua-language-server
     pyright
+    ruff
     terraform-ls
   ];
 
   extraPkgs = with pkgs; [
     # font ~> https://github.com/shytikov/pragmasevka
-    ruff
   ];
 in
 {

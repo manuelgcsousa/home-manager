@@ -1,34 +1,44 @@
 local lsp = require('lspconfig')
 
--- Python
-lsp.pyright.setup{
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = 'basic',
-        diagnosticMode = 'openFilesOnly'
+local configs = {
+  python = {
+    server = 'pyright',
+    settings = {
+      python = {
+        analysis = {
+          typeCheckingMode = 'basic',
+          diagnosticMode = 'openFilesOnly'
+        }
+      }
+    }
+  },
+  terraform = {
+    server = 'terraformls'
+  },
+  go = {
+    server = 'gopls'
+  },
+  typescript = {
+    server = 'tsserver'
+  },
+  lua = {
+    server = 'lua_ls',
+    settings = {
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+        }
       }
     }
   }
 }
 
--- Golang
-lsp.gopls.setup{}
+for _, config in pairs(configs) do
+  lsp[config.server].setup({
+    settings = config.settings or {}
+  })
+end
 
--- Terraform
-lsp.terraformls.setup{}
 
--- TypeScript
-lsp.tsserver.setup{}
-
--- Lua
-require('neodev').setup{}  -- neovim lua dev
-lsp.lua_ls.setup{
-  settings = {
-    Lua = {
-      workspace = {
-        checkThirdParty = false,
-      }
-    }
-  }
-}
+-- neovim lua dev
+require('neodev').setup({})
