@@ -1,3 +1,14 @@
+require('nvim-web-devicons').setup({
+  override = {
+    toml = {
+      icon = "󰬛",
+      color = "#9c4221",
+      cterm_color = "124",
+      name = "Toml",
+    },
+  };
+})
+
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
 
@@ -10,7 +21,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '<C-e>', api.tree.close, opts('Close'))
 end
 
-require('nvim-tree').setup{
+require('nvim-tree').setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_tab = false,
@@ -23,4 +34,4 @@ require('nvim-tree').setup{
     side = 'left'
   },
   on_attach = on_attach
-}
+})
