@@ -1,10 +1,8 @@
 # taps
 tap "homebrew/bundle"
-tap "koekeishiya/formulae"
 
 # brews
-brew "koekeishiya/formulae/skhd"
-brew "koekeishiya/formulae/yabai"
+# ...
 
 # casks
 cask "alt-tab"
