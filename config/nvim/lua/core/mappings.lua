@@ -18,7 +18,7 @@ map('v', '<Leader>jq', '!jq .<CR>',                                opts)        
 map('x', 'Q',          ':norm @q<CR>',                             { silent = false }) -- run 'q' macro on multiple lines
 
 --- nvim-tree
-map('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
+-- map('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
 
 -- telescope
 map('n', '<C-f>',      ':Telescope find_files<CR>',  opts)

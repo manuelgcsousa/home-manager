@@ -71,12 +71,15 @@ in
       gitsigns-nvim
       vscode-nvim
       telescope-nvim
-      nvim-tree-lua
+      # nvim-tree-lua
+      neo-tree-nvim
       lualine-nvim
       nvim-autopairs
       vim-surround
       conflict-marker-vim
       nvim-web-devicons
+
+      oil-nvim
 
       conform-nvim
       nvim-lspconfig
