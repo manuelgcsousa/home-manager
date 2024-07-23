@@ -49,9 +49,9 @@ let
   ];
 in
 {
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
+
+  fonts.fontconfig.enable = true;
 
   home = {
     stateVersion = "24.11";
@@ -70,8 +70,6 @@ in
       ".zshrc".source     = ./config/zsh/zshrc;
     };
   };
-
-  fonts.fontconfig.enable = true;
 
   programs.bat = {
     enable = true;
