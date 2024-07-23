@@ -4,6 +4,26 @@ let
   myUser = "manuelgcsousa";
   myHome = if pkgs.stdenv.isLinux then "/home/${myUser}" else "/Users/${myUser}";
 
+  # derivation for installing font
+  pragmasevka = pkgs.stdenv.mkDerivation {
+    pname = "Pragmasevka-NF";
+    version = "1.6.6";
+
+    src = pkgs.fetchurl {
+      url = "https://github.com/shytikov/pragmasevka/releases/download/v1.6.6/Pragmasevka_NF.zip";
+      sha256 = "12m8zyqclwzgr4ydzk7bcjk20zkv3mlfjbcmm3w31ys66l24l8al";
+    };
+
+    buildInputs = [ pkgs.unzip ];
+
+    sourceRoot = ".";
+
+    installPhase = ''
+      mkdir -p $out/share/fonts/Pragmasevka-NF
+      unzip $src -d $out/share/fonts/Pragmasevka-NF
+    '';
+  };
+
   defaultPkgs = with pkgs; [
     # base
     fzf
@@ -25,7 +45,7 @@ let
   ];
 
   extraPkgs = with pkgs; [
-    # font ~> https://github.com/shytikov/pragmasevka
+    pragmasevka
   ];
 in
 {
@@ -51,6 +71,8 @@ in
     };
   };
 
+  fonts.fontconfig.enable = true;
+
   programs.bat = {
     enable = true;
 
@@ -71,15 +93,14 @@ in
       gitsigns-nvim
       vscode-nvim
       telescope-nvim
-      # nvim-tree-lua
-      neo-tree-nvim
+      nvim-tree-lua
       lualine-nvim
       nvim-autopairs
       vim-surround
       conflict-marker-vim
       nvim-web-devicons
 
-      oil-nvim
+      oil-nvim  # temp?
 
       conform-nvim
       nvim-lspconfig
@@ -93,7 +114,7 @@ in
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-bash
         p.tree-sitter-c
-        p.tree-sitter-dockerfile
+        # p.tree-sitter-dockerfile
         p.tree-sitter-go
         p.tree-sitter-html
         p.tree-sitter-java
