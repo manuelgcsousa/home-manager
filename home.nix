@@ -1,9 +1,5 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, username, ... }:
 let
-  myUser = "manuelgcsousa";
-  myHome = if pkgs.stdenv.isLinux then "/home/${myUser}" else "/Users/${myUser}";
-
   # derivation for installing font
   pragmasevka = pkgs.stdenv.mkDerivation {
     pname = "Pragmasevka-NF";
@@ -49,15 +45,14 @@ let
   ];
 in
 {
-  nixpkgs.config.allowUnfree = true;
-
-  fonts.fontconfig.enable = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
 
   home = {
-    stateVersion = "24.11";
-
-    username = myUser;
-    homeDirectory = myHome;
+    stateVersion = "24.05";
+    username = "${username}";
+    homeDirectory = if pkgs.stdenv.isLinux then "/home/${username}" else "/Users/${username}";
 
     packages = defaultPkgs ++ extraPkgs;
 
@@ -71,65 +66,70 @@ in
     };
   };
 
-  programs.bat = {
-    enable = true;
+  fonts = {
+    fontconfig.enable = true;
+  };
 
-    config = {
-      theme = "Visual Studio Dark+";
+  programs = {
+    # let home-manager install and manage itself
+    home-manager.enable = true;
+
+    bat = {
+      enable = true;
+      config = {
+        theme = "Visual Studio Dark+";
+      };
+    };
+
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+
+      # use home-manager as a neovim package manager
+      plugins = with pkgs.vimPlugins; [
+        alpha-nvim
+        gitsigns-nvim
+        vscode-nvim
+        telescope-nvim
+        nvim-tree-lua
+        lualine-nvim
+        nvim-autopairs
+        vim-surround
+        conflict-marker-vim
+        nvim-web-devicons
+
+        oil-nvim  # temp?
+
+        conform-nvim
+        nvim-lspconfig
+        neodev-nvim
+        nvim-cmp
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        lspkind-nvim
+
+        (nvim-treesitter.withPlugins (p: [
+          p.tree-sitter-bash
+          p.tree-sitter-c
+          # p.tree-sitter-dockerfile
+          p.tree-sitter-go
+          p.tree-sitter-html
+          p.tree-sitter-java
+          p.tree-sitter-json
+          p.tree-sitter-lua
+          p.tree-sitter-make
+          p.tree-sitter-nix
+          p.tree-sitter-python
+          p.tree-sitter-terraform
+          p.tree-sitter-typescript
+          p.tree-sitter-vim
+          p.tree-sitter-vimdoc
+          p.tree-sitter-yaml
+        ]))
+      ];
     };
   };
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-
-    # use home-manager as a neovim package manager
-    plugins = with pkgs.vimPlugins; [
-      alpha-nvim
-      gitsigns-nvim
-      vscode-nvim
-      telescope-nvim
-      nvim-tree-lua
-      lualine-nvim
-      nvim-autopairs
-      vim-surround
-      conflict-marker-vim
-      nvim-web-devicons
-
-      oil-nvim  # temp?
-
-      conform-nvim
-      nvim-lspconfig
-      neodev-nvim
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      lspkind-nvim
-
-      (nvim-treesitter.withPlugins (p: [
-        p.tree-sitter-bash
-        p.tree-sitter-c
-        # p.tree-sitter-dockerfile
-        p.tree-sitter-go
-        p.tree-sitter-html
-        p.tree-sitter-java
-        p.tree-sitter-json
-        p.tree-sitter-lua
-        p.tree-sitter-make
-        p.tree-sitter-nix
-        p.tree-sitter-python
-        p.tree-sitter-terraform
-        p.tree-sitter-typescript
-        p.tree-sitter-vim
-        p.tree-sitter-vimdoc
-        p.tree-sitter-yaml
-      ]))
-    ];
-  };
-
-  # let home-manager install and manage itself
-  programs.home-manager.enable = true;
 }
