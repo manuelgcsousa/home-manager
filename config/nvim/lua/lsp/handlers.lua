@@ -12,7 +12,7 @@ M.setup = function()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
   end
 
-  local config = {
+  vim.diagnostic.config({
     -- disable virtual text
     virtual_text = false,
     -- show signs
@@ -23,10 +23,10 @@ M.setup = function()
     underline = true,
     severity_sort = true,
     float = {
-      focusable = false
+      focusable = false,
+      border = MyCustomFloatBorder()
     }
-  }
-  vim.diagnostic.config(config)
+  })
 end
 
 return M
