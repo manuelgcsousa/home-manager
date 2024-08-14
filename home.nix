@@ -57,6 +57,7 @@ in
     packages = defaultPkgs ++ extraPkgs;
 
     file = {
+      ".config/aerospace" = { source = ./config/aerospace; recursive = true; };
       ".config/alacritty" = { source = ./config/alacritty; recursive = true; };
       ".config/brewfile"  = { source = ./config/brewfile; recursive = true; };
       ".config/kitty"     = { source = ./config/kitty; recursive = true; };

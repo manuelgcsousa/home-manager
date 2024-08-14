@@ -1,9 +1,10 @@
 # taps
+tap "felixkratz/formulae"
 tap "homebrew/bundle"
 tap "nikitabobko/tap"
 
 # brews
-# ...
+brew "felixkratz/formulae/borders"
 
 # casks
 cask "aerospace"
