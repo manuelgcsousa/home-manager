@@ -1,20 +1,21 @@
 # taps
 tap "homebrew/bundle"
+tap "nikitabobko/tap"
 
 # brews
 # ...
 
 # casks
-cask "alt-tab"
+cask "aerospace"
 cask "brave-browser"
 cask "bruno"
 cask "dbeaver-community"
 cask "docker"
 cask "firefox"
 cask "hiddenbar"
+cask "kitty"
 cask "scroll-reverser"
 cask "slack"
-cask "kitty"
 cask "spaceman"
 cask "spotify"
 cask "tunnelblick"

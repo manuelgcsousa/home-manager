@@ -20,17 +20,17 @@ map('x', 'Q',          ':norm @q<CR>',                             { silent = fa
 --- nvim-tree
 map('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
 
--- telescope
-map('n', '<C-f>',      ':Telescope find_files<CR>',  opts)
-map('n', '<C-b>',      ':Telescope buffers<CR>',     opts)
-map('n', '<C-g>',      ':Telescope live_grep<CR>',   opts)
-map('n', '<Leader>gs', ':Telescope git_status<CR>',  opts)
+-- fzf-lua
+map('n', '<C-f>',      ':FzfLua files<CR>',      opts)
+map('n', '<C-b>',      ':FzfLua buffers<CR>',    opts)
+map('n', '<C-g>',      ':FzfLua live_grep<CR>',  opts)
+map('n', '<Leader>gs', ':FzfLua git_status<CR>', opts)
 
 -- gitsigns
 map('n', '<Leader>lb', ':Gitsigns toggle_current_line_blame<CR>', opts)
 
 -- LSP
-map('n', '<Leader>r',  ':Telescope lsp_references<CR>',            opts)
+map('n', '<Leader>r',  ':FzfLua lsp_references<CR>',               opts)
 map('n', '<Leader>d',  '<cmd>lua vim.lsp.buf.definition()<CR>',    opts)
 map('n', '<Leader>h',  '<cmd>lua vim.lsp.buf.hover()<CR>',         opts)
 map('n', '<Leader>sd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)

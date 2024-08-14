@@ -88,7 +88,7 @@ in
         alpha-nvim
         gitsigns-nvim
         vscode-nvim
-        telescope-nvim
+        fzf-lua
         nvim-tree-lua
         lualine-nvim
         nvim-autopairs
