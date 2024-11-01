@@ -34,8 +34,8 @@ local configs = {
 }
 
 local handlers = {
-    ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = MyCustomFloatBorder() }),
-    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = MyCustomFloatBorder() }),
+  ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = MyCustomFloatBorder() }),
+  ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = MyCustomFloatBorder() }),
 }
 
 for _, config in pairs(configs) do
