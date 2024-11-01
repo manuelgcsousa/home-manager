@@ -1,48 +1,11 @@
 { config, pkgs, username, ... }:
 let
-  # derivation for installing font
-  pragmasevka = pkgs.stdenv.mkDerivation {
-    pname = "Pragmasevka-NF";
-    version = "1.6.6";
+  commonPkgs = import ./pkgs/common.nix { inherit pkgs; };
 
-    src = pkgs.fetchurl {
-      url = "https://github.com/shytikov/pragmasevka/releases/download/v1.6.6/Pragmasevka_NF.zip";
-      sha256 = "12m8zyqclwzgr4ydzk7bcjk20zkv3mlfjbcmm3w31ys66l24l8al";
-    };
+  osPkgs = if pkgs.stdenv.isLinux == "x86_64-linux" then import ./pkgs/linux.nix { inherit pkgs; }
+           else import ./pkgs/darwin.nix { inherit pkgs; };
 
-    buildInputs = [ pkgs.unzip ];
-
-    sourceRoot = ".";
-
-    installPhase = ''
-      mkdir -p $out/share/fonts/Pragmasevka-NF
-      unzip $src -d $out/share/fonts/Pragmasevka-NF
-    '';
-  };
-
-  defaultPkgs = with pkgs; [
-    # base
-    fzf
-    jq
-    macchina
-    ripgrep
-    tabiew
-    tmux
-    tree
-    typst
-    wget
-
-    # language tools
-    gopls
-    lua-language-server
-    pyright
-    ruff
-    terraform-ls
-  ];
-
-  extraPkgs = with pkgs; [
-    pragmasevka
-  ];
+  pragmasevka = import ./derivations/pragmasevka.nix { inherit pkgs; };
 in
 {
   nixpkgs = {
@@ -54,7 +17,7 @@ in
     username = "${username}";
     homeDirectory = if pkgs.stdenv.isLinux then "/home/${username}" else "/Users/${username}";
 
-    packages = defaultPkgs ++ extraPkgs;
+    packages = commonPkgs ++ osPkgs ++ [ pragmasevka ];
 
     file = {
       ".config/aerospace" = { source = ./config/aerospace; recursive = true; };
@@ -97,8 +60,6 @@ in
         conflict-marker-vim
         nvim-web-devicons
 
-        oil-nvim  # temp?
-
         conform-nvim
         nvim-lspconfig
         neodev-nvim
@@ -111,10 +72,12 @@ in
         (nvim-treesitter.withPlugins (p: [
           p.tree-sitter-bash
           p.tree-sitter-c
+          p.tree-sitter-css
           # p.tree-sitter-dockerfile
           p.tree-sitter-go
           p.tree-sitter-html
           p.tree-sitter-java
+          p.tree-sitter-javascript
           p.tree-sitter-json
           p.tree-sitter-lua
           p.tree-sitter-make
