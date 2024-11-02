@@ -2,7 +2,7 @@
 let
   commonPkgs = import ./pkgs/common.nix { inherit pkgs; };
 
-  osPkgs = if pkgs.stdenv.isLinux == "x86_64-linux" then import ./pkgs/linux.nix { inherit pkgs; }
+  osPkgs = if pkgs.stdenv.isLinux then import ./pkgs/linux.nix { inherit pkgs; }
            else import ./pkgs/darwin.nix { inherit pkgs; };
 
   pragmasevka = import ./derivations/pragmasevka.nix { inherit pkgs; };
