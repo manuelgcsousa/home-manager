@@ -102,6 +102,7 @@ alias \
 # other
 alias tf="terraform"
 alias icat="kitten icat"
+alias hms="home-manager switch"
 
 
 #

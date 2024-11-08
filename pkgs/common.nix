@@ -1,6 +1,7 @@
 { pkgs }:
 with pkgs; [
   # base
+  fd
   fzf
   jq
   macchina
