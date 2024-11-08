@@ -10,12 +10,6 @@ export TERMINAL="kitty"
 export EDITOR="nvim"
 export LANG=pt_PT.UTF-8
 
-# PATH
-export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$HOME/.scripts:/usr/local/go/bin:$HOME/.cargo/bin:$HOME/.local/share/go/bin:/opt/gradle/gradle-8.5/bin:$HOME/.bun/bin"
-
-# pyenv within PATH
-eval "$(pyenv init -)"
-
 # go
 export GOPATH="$HOME/.local/share/go"
 
@@ -27,7 +21,31 @@ source <(fzf --zsh)
 
 
 #
-# zsh settings
+# PATH
+#
+
+function pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+pathadd "/opt/homebrew/bin"
+pathadd "/opt/homebrew/sbin"
+pathadd "$HOME/.local/bin"
+pathadd "$HOME/.scripts"
+pathadd "/usr/local/go/bin"
+pathadd "$GOPATH"
+pathadd "$HOME/.cargo/bin"
+pathadd "/opt/gradle/gradle-8.5/bin"
+pathadd "$HOME/.bun/bin"
+
+# pyenv within PATH
+eval "$(pyenv init -)"
+
+
+#
+# settings
 #
 
 # prompt
