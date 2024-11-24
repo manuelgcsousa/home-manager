@@ -78,6 +78,7 @@ in
           p.tree-sitter-html
           p.tree-sitter-java
           p.tree-sitter-javascript
+          p.tree-sitter-just
           p.tree-sitter-json
           p.tree-sitter-lua
           p.tree-sitter-make
