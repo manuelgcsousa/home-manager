@@ -1,3 +1,6 @@
+eval "$(devbox global shellenv --init-hook)"
+
+
 #
 # env
 #
@@ -59,7 +62,7 @@ precmd() {
 }
 
 setopt PROMPT_SUBST
-PROMPT=$'\n[%F{8}%~%f$(parse_git_branch)]\n$ '
+PROMPT=$'[%F{8}%~%f$(parse_git_branch)]\n$ '
 
 # history
 HISTSIZE=10000
