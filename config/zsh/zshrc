@@ -53,9 +53,13 @@ function parse_git_branch() {
     branch=$(git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
     [ $branch ] && echo " :: %F{green}$branch%f"
 }
+
+precmd() {
+    print ""
+}
+
 setopt PROMPT_SUBST
 PROMPT=$'\n[%F{8}%~%f$(parse_git_branch)]\n$ '
-export PROMPTBK=$PROMPT
 
 # history
 HISTSIZE=10000
