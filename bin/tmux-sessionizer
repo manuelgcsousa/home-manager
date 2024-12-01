@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# ==================================================================
+# tmux-sessionizer
+#
+# Credits: Script heavily inspired by "https://github.com/ThePrimeagen/tmux-sessionizer"
+# ==================================================================
+
 directories=(
   "$HOME/TonicApp/Backend/doctors/api"
 )

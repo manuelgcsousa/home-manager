@@ -4,6 +4,7 @@ with pkgs; [
   fd
   fzf
   jq
+  just
   macchina
   ripgrep
   tabiew
@@ -18,4 +19,7 @@ with pkgs; [
   pyright
   ruff
   terraform-ls
+
+  # fonts
+  (nerdfonts.override { fonts = [ "IosevkaTerm" ]; })
 ]

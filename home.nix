@@ -4,8 +4,6 @@ let
 
   osPkgs = if pkgs.stdenv.isLinux then import ./pkgs/linux.nix { inherit pkgs; }
            else import ./pkgs/darwin.nix { inherit pkgs; };
-
-  pragmasevka = import ./derivations/pragmasevka.nix { inherit pkgs; };
 in
 {
   nixpkgs = {
@@ -17,7 +15,7 @@ in
     username = "${username}";
     homeDirectory = if pkgs.stdenv.isLinux then "/home/${username}" else "/Users/${username}";
 
-    packages = commonPkgs ++ osPkgs ++ [ pragmasevka ];
+    packages = commonPkgs ++ osPkgs;
 
     file = {
       ".config/aerospace" = { source = ./config/aerospace; recursive = true; };
@@ -73,7 +71,7 @@ in
           p.tree-sitter-bash
           p.tree-sitter-c
           p.tree-sitter-css
-          # p.tree-sitter-dockerfile
+          p.tree-sitter-dockerfile
           p.tree-sitter-go
           p.tree-sitter-html
           p.tree-sitter-java
