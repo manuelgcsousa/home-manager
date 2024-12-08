@@ -21,5 +21,5 @@ with pkgs; [
   terraform-ls
 
   # fonts
-  (nerdfonts.override { fonts = [ "IosevkaTerm" ]; })
+  nerd-fonts.iosevka-term
 ]

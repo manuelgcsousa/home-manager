@@ -5,7 +5,7 @@ WINIT_X11_SCALE_FACTOR = "1"
 size = 13.5
 
 [font.normal]
-family = "Pragmasevka Nerd Font"
+family = "IosevkaTerm Nerd Font"
 style = "Regular"
 
 [font.offset]

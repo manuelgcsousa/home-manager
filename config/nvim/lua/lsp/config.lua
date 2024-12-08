@@ -18,9 +18,6 @@ local configs = {
   go = {
     server = 'gopls'
   },
-  typescript = {
-    server = 'tsserver'
-  },
   lua = {
     server = 'lua_ls',
     settings = {

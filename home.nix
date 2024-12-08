@@ -55,6 +55,7 @@ in
         lualine-nvim
         nvim-autopairs
         vim-surround
+        mini-ai
         conflict-marker-vim
         nvim-web-devicons
 
